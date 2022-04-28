@@ -1,0 +1,20 @@
+{
+  "name": "exam_folder",
+  "version": "1.0.0",
+  "description": "exam folder",
+  "main": "index.js",
+  "scripts": {
+    "client": "cd frontend && npm start",
+    "server": "cd backend && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PWU-EXAMS/car-rental-exam.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PWU-EXAMS/car-rental-exam/issues"
+  },
+  "homepage": "https://github.com/PWU-EXAMS/car-rental-exam#readme"
+}
