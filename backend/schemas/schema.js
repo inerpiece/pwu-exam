@@ -10,6 +10,7 @@ import car from './car';
 import brand from './brand';
 import blog from './blog';
 import testimonial from './testimonial';
+import carCategories from './carCategories';
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
@@ -21,6 +22,7 @@ export default createSchema({
     car,
     brand,
     blog,
-    testimonial
+    testimonial,
+    carCategories
   ]),
 })

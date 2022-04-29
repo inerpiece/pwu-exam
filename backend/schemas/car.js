@@ -66,6 +66,12 @@ export default {
       type: 'image',
       validation: Rule => Rule.required(),
     },
-    
+    {
+      name: 'category',
+      title: 'Car Category',
+      type: 'array',
+      of: [{type: 'reference', to: {type: 'carCategories'}}],
+      validation: Rule => Rule.max(1),
+    },
   ]
 }
