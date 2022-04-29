@@ -5,7 +5,7 @@ export default {
   fields: [
     {
       name: 'name',
-      title: 'Car Name',
+      title: 'Car Model Name',
       type: 'string',
       validation: Rule => Rule.required()
     },
@@ -47,6 +47,24 @@ export default {
       type: 'array',
       of: [{type: 'reference', to: {type: 'brand'}}],
       validation: Rule => Rule.max(1),
+    },
+    {
+      name: 'price',
+      title: 'Car Price/Day',
+      type: 'number',
+      validation: Rule => Rule.required(),
+    },
+    {
+      name: 'seats',
+      title: 'Number of Passenger Seats',
+      type: 'number',
+      validation: Rule => Rule.required(),
+    },
+    {
+      name: 'image',
+      title: 'Car Image',
+      type: 'image',
+      validation: Rule => Rule.required(),
     },
     
   ]
