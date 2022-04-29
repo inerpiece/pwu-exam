@@ -8,6 +8,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 // other imports
 import car from './car';
 import brand from './brand';
+import blog from './blog';
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
@@ -17,7 +18,7 @@ export default createSchema({
   types: schemaTypes.concat([
     /* Your types here! */
     car,
-    brand
-
+    brand,
+    blog
   ]),
 })
