@@ -16,10 +16,10 @@ const MainNav = () => (
       Profile
     </NavLink>
     <NavLink
-      to="/external-api"
+      to="/cars"
       className="nav-link"
     >
-      External API
+      Cars
     </NavLink>
   </div>
 );

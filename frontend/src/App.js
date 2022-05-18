@@ -21,9 +21,11 @@ import { useAuth0 } from '@auth0/auth0-react';
 import NavBar from './components/nav-bar';
 import Footer from './components/footer';
 import Loading from './components/loading';
+import SingleCar from './components/car-components/SingleCar';
 
 import Home from './views/home';
 import Profile from './views/profile';
+import Cars from './views/cars';
 
 import './App.css';
 import ProtectedRoute from './auth/protected-route';
@@ -45,7 +47,11 @@ const App = () => {
           <Route path="/profile" element={<ProtectedRoute />}>
             <Route exact path='/profile' element={<Profile />} />
           </Route>
-          {/* <Route path="/external-api" component={ExternalApi} /> */}
+          {/* <Route path="/cars" element={<ProtectedRoute />}>
+            <Route path="/cars" element={<Cars />} />
+          </Route> */}
+          <Route path="/cars" element={<Cars />} />
+          <Route path="/car/:slug" element={<SingleCar />} />
         </Routes>
       </div>
       <Footer />
