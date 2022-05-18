@@ -40,6 +40,9 @@
     ]
   },
   "devDependencies": {
-    "jest-watch-typeahead": "^0.6.5"
+    "autoprefixer": "^10.4.7",
+    "jest-watch-typeahead": "^0.6.5",
+    "postcss": "^8.4.13",
+    "tailwindcss": "^3.0.24"
   }
 }

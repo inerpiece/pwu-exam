@@ -36,9 +36,9 @@ const App = () => {
   }
 
   return (
-    <div id="app" className="d-flex flex-column h-100">
+    <div id="app" className="">
       <NavBar />
-      <div className="container flex-grow-1">
+      <div className="">
         <Routes>
           <Route path="/" exact element={<Home />} />
           {/* The below is the profile route, wrapped in a protected route component, unless isAuthenticated = true then it redirects to home */}
