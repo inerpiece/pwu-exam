@@ -25,7 +25,9 @@ export default function SingleCar() {
             url
           },
           alt
-        }
+        },
+        availability,
+        description
       }`)
       .then((data) => setSingleCarData(data[0]))
       .catch(console.error);
@@ -34,21 +36,29 @@ export default function SingleCar() {
   if (!singleCarData) return <Loading />;
 
   return (
-    <main>
-      <article>
-        <header>
-          <div>
+    <main className='text-white'>
+      <article className='w-5/6 mx-auto w-100 p-4 rounded bg-slate-500 flex justify-evenly'>
+          <div className='w-4/6'>
+            <img className='' src={singleCarData.image.asset.url} alt={ singleCarData.slug } />
+          </div>
+          <div className='w-2/6'>
+            <div className=''>
+              <h2 className='text-2xl font-bold'>Model: {singleCarData.brand} {singleCarData.name}</h2>
+            </div>
+            <div className='mt-8'>
+              <h3 className='text-xl'>Fuel Type: {singleCarData.fuelType}</h3>
+              <h3 className='text-xl'>Fuel Consumption/100km: {singleCarData.fuelConsumption}L</h3>
+              <h3 className='text-xl'>Transmition Type: {singleCarData.transmition}</h3>
+              <h3 className='text-xl'>Passenger Seats: {singleCarData.seats}</h3>
+            </div>
+            <div className='mt-8 mb-8'>
+              <h2 className='bg-white p-4 text-black rounded-full inline mr-8 text-lg italic'>${singleCarData.price} <span>/per day</span></h2>
+              <button className='border p-4 rounded hover:bg-white hover:text-black'>Rent now</button>
+            </div>
             <div>
-              <h1>{singleCarData.name}</h1>
-              <div>
-                <img src={singleCarData.image.asset.url} alt={singleCarData.name} />
-              </div>
-              <p>{singleCarData.category}</p>
+              <h4>{singleCarData.description}</h4>
             </div>
           </div>
-          <img />
-        </header>
-        <div>blc</div>
       </article>
     </main>
   )
