@@ -4,10 +4,35 @@ import sanityClient from '../../client';
 
 export default function Car() {
   const [carData, setCarData] = useState(null);
+  const [pageNum, setPageNum] = useState(0);
+
+  let currentPage = 0;
+  let carsPerPage = 8;
+  let currentStart = pageNum * carsPerPage;
+  let currentEnd = currentStart + carsPerPage - 1;
+
+  const nextPage = () => {
+    setPageNum(pageNum + 1);
+    // if (pageNum > Math.ceil(carData.length / carsPerPage)) setPageNum(0)
+    // if (pageNum > numOfPages()) setPageNum(numOfPages());
+    // currentPage++
+    // if (currentPage > numOfPages()) currentPage = numOfPages();
+  }
+
+  const prevPage = () => {
+    setPageNum(pageNum - 1);
+    if (pageNum < 0) setPageNum(0);
+    // currentPage--
+    // if (currentPage < 0) currentPage = 0;
+  }
+
+  // const numOfPages = () => {
+  //   return Math.ceil(carData.length / carsPerPage);
+  // }
 
   useEffect(() => {
     sanityClient
-      .fetch(`*[_type == "car"]{
+      .fetch(`*[_type == "car"][${currentStart}..${currentEnd}]{
         name,
         slug,
         "brand": brand[]->name,
@@ -23,13 +48,15 @@ export default function Car() {
       }`)
       .then((data) => setCarData(data))
       .catch(console.error)
-  }, []);
+  }, [pageNum]);
 
   return (
     <main>
       <section>
         <h1>Rent a car</h1>
         <h2>Choose a car to rent from the below list.</h2>
+        <button onClick={prevPage}>Prev Page</button>
+        <button onClick={nextPage}>Next Page</button>
         <div className='flex-row flex-wrap justify-evenly mb-8'>
           { carData && carData.map((car, index) => (
           <article className='w-1/4 inline-block p-2'>
