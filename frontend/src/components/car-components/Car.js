@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import sanityClient from '../../client';
+import Banner from '../Banner';
 
 export default function Car() {
   const [carData, setCarData] = useState(null);
@@ -53,16 +54,8 @@ export default function Car() {
   return (
     <main>
       <section>
-        <div className='mt-20 flex'>
-          <div className='w-2/6 pt-40 pl-20 text-2xl'>
-            <h1 className='text-6xl'>FAST AND EASY WAY TO RENT A CAR</h1>
-            <p className='pt-20'>Looking for unbelievable prices on a car rental? Rent an exclusive set of cars and you are guaranteed to extract the most pristine experience out there! We work with top brands in the car industry to ensure your satisfaction.</p>
-          </div>
-          <div className='w-4/6'>
-            <img className='w-full' src='https://65e81151f52e248c552b-fe74cd567ea2f1228f846834bd67571e.ssl.cf1.rackcdn.com/ldm-images/2018-Porsche-911-Agate-Grey-Metallic.jpg'/>
-          </div>
-        </div>
-        <div className='flex-row flex-wrap justify-evenly mb-8'>
+        <Banner orientation="right" title="FAST AND EASY WAY TO RENT A CAR" description="Looking for unbelievable prices on a car rental? Rent an exclusive set of cars and you are guaranteed to extract the most pristine experience out there! We work with top brands in the car industry to ensure your satisfaction." imgSrc="https://65e81151f52e248c552b-fe74cd567ea2f1228f846834bd67571e.ssl.cf1.rackcdn.com/ldm-images/2018-Porsche-911-Agate-Grey-Metallic.jpg"/>
+        <div className='flex-row flex-wrap justify-evenly mb-8 px-20'>
           { carData && carData.map((car, index) => (
           <article className='w-1/4 inline-block p-2'>
             <Link to={"/car/" + car.slug.current} key={car.slug.current}>
@@ -75,7 +68,7 @@ export default function Car() {
                     <h2 className='text-2xl font-bold'>Model: {car.brand} {car.name}</h2>
                   </div>
                   <div className='mt-8 flex flex-wrap justify-between'>
-                    <h3 className='text-xl'><span className='underline'>Description:</span> {car.description.substring(0,100)}...</h3>
+                    <h3 className='text-xl'><span className='underline'>Description:</span> {car.description.toLowerCase().substring(0,80)}...</h3>
                   </div>
                   <div className='mt-8 mb-4'>
                     <h2 className='bg-white p-4 text-black rounded-full inline mr-8 text-lg italic'>Available: {car.availability ? <span>yes</span> : <span>no</span>} </h2>
