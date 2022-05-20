@@ -2,11 +2,11 @@ import React from 'react';
 
 export default function Banner(props) {
   return (
-    <div data-testid="Banner" title="Hello World">
+    <div>
       {props.orientation == 'right' ? 
         <div className='flex'>
           <div className='w-2/6 pt-40 pl-20 text-2xl'>
-            <h2 className='text-6xl'>{props.title}</h2>
+            <h2 className='text-6xl' data-testid="BannerH2">{props.title}</h2>
             <p className='pt-20'>{props.description}</p>
           </div>
           <div className='w-4/6'>
