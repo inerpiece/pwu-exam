@@ -53,10 +53,15 @@ export default function Car() {
   return (
     <main>
       <section>
-        <h1>Rent a car</h1>
-        <h2>Choose a car to rent from the below list.</h2>
-        <button onClick={prevPage}>Prev Page</button>
-        <button onClick={nextPage}>Next Page</button>
+        <div className='mt-20 flex'>
+          <div className='w-2/6 pt-40 pl-20 text-2xl'>
+            <h1 className='text-6xl'>FAST AND EASY WAY TO RENT A CAR</h1>
+            <p className='pt-20'>Looking for unbelievable prices on a car rental? Rent an exclusive set of cars and you are guaranteed to extract the most pristine experience out there! We work with top brands in the car industry to ensure your satisfaction.</p>
+          </div>
+          <div className='w-4/6'>
+            <img className='w-full' src='https://65e81151f52e248c552b-fe74cd567ea2f1228f846834bd67571e.ssl.cf1.rackcdn.com/ldm-images/2018-Porsche-911-Agate-Grey-Metallic.jpg'/>
+          </div>
+        </div>
         <div className='flex-row flex-wrap justify-evenly mb-8'>
           { carData && carData.map((car, index) => (
           <article className='w-1/4 inline-block p-2'>
@@ -80,6 +85,10 @@ export default function Car() {
             </Link>
           </article>
           ))}
+        </div>
+        <div className='flex justify-around'>
+          <button className='border-2 border-gray rounded p-4 bg-gray-600 text-white hover:border-green-500' onClick={prevPage}>Prev Page</button>
+          <button className='border-2 border-gray rounded p-4 bg-gray-600 text-white hover:border-green-500' onClick={nextPage}>Next Page</button>
         </div>
       </section>
     </main>
