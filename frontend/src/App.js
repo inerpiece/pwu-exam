@@ -50,7 +50,7 @@ const App = () => {
           <Route path="/cars" element={<ProtectedRoute />}>
             <Route path="/cars" element={<Cars />} />
           </Route>
-          <Route path="/car/:slug" element={withAuthenticationRequired(<SingleCar />)} />
+          <Route path="/car/:slug" element={<SingleCar />} />
           {/* <Route path="/cars" element={<Cars />} />
           <Route path="/car/:slug" element={<SingleCar />} /> */}
         </Routes>
