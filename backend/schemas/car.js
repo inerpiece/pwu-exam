@@ -84,5 +84,10 @@ export default {
       type: 'text',
       validation: Rule => Rule.required()
     },
+    {
+      name: 'user',
+      title: 'In Use By:',
+      type: 'string'
+    },
   ]
 }

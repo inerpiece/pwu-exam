@@ -16,7 +16,7 @@
 
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 
 import NavBar from './components/nav-bar';
 import Footer from './components/footer';
@@ -47,11 +47,12 @@ const App = () => {
           <Route path="/profile" element={<ProtectedRoute />}>
             <Route exact path='/profile' element={<Profile />} />
           </Route>
-          {/* <Route path="/cars" element={<ProtectedRoute />}>
+          <Route path="/cars" element={<ProtectedRoute />}>
             <Route path="/cars" element={<Cars />} />
-          </Route> */}
-          <Route path="/cars" element={<Cars />} />
-          <Route path="/car/:slug" element={<SingleCar />} />
+          </Route>
+          <Route path="/car/:slug" element={withAuthenticationRequired(<SingleCar />)} />
+          {/* <Route path="/cars" element={<Cars />} />
+          <Route path="/car/:slug" element={<SingleCar />} /> */}
         </Routes>
       </div>
       <Footer />
