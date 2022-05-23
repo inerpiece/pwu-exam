@@ -145,15 +145,15 @@ export default function Car() {
 
   return (
     <main>
-      {window.location.pathname === "/cars" ? <section> {/* This line exists because I need the /cars/:slug route to be protected, I couldn't find another way to protect it so I am using Outlet to render the child component of the /cars/ Route which is /cars/:slug */}
+      {window.location.pathname === "/cars" ? <section className='pt-20'> {/* This line exists because I need the /cars/:slug route to be protected, I couldn't find another way to protect it so I am using Outlet to render the child component of the /cars/ Route which is /cars/:slug */}
         <Banner orientation="right" title="FAST AND EASY WAY TO RENT A CAR" description="Looking for unbelievable prices on a car rental? Rent an exclusive set of cars and you are guaranteed to extract the most pristine experience out there! We work with top brands in the car industry to ensure your satisfaction." imgSrc="https://assets.webiconspng.com/uploads/2017/09/Ferrari-PNG-Image-68700.png"/>
-        <section className='w-5/6 mx-auto bg-slate-700 text-white p-10'>
-          <button className='bg-white px-5 py-2 text-black rounded-full hover:bg-slate-200 mr-5' onClick={setFilterToAll}>All</button>
-          {filters && filters.map((filter) => <button data-filter={filter.name} className='bg-white px-5 py-2 text-black rounded-full hover:bg-slate-200 mr-5' onClick={filterCar} key={filter.name}>{filter.name}</button>)}
+        <section className='w-5/6 mx-auto bg-slate-700 text-white p-2 md:p-10'>
+          <button className='bg-white px-5 py-2 text-black rounded-full hover:bg-slate-200 mr-2 mt-2 sm:mr-5 sm:mt-5' onClick={setFilterToAll}>All</button>
+          {filters && filters.map((filter) => <button data-filter={filter.name} className='bg-white px-5 py-2 text-black rounded-full hover:bg-slate-200 mr-2 mt-2 sm:mr-5 sm:mt-5' onClick={filterCar} key={filter.name}>{filter.name}</button>)}
         </section>
         <div className='flex-row flex-wrap justify-evenly mb-8 px-20'>
           { carData && carData.map((car, index) => (
-          <article className='w-1/4 inline-block p-2' key={index}>
+          <article className='w-4/4 sm:w-4/4 lg:w-2/4 2xl:w-1/4 inline-block p-2' key={index}>
             <Link to={"/cars/" + car.slug.current} key={car.slug.current}> {/* The Route has to be changed to /car/ + car.slug.current if I find a way to protect it without the use of Outlet, then in App.js the Route has to be on its own line and changed to path="/car/:slug" */}
               <article className='mx-auto w-100 p-4 rounded bg-slate-700 flex-col text-white hover:bg-slate-600'>
                 <div className=''>

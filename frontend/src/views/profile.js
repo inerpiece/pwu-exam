@@ -40,9 +40,9 @@ const Profile = () => {
   }, []);
 
   return (
-    <section>
-      <div className='flex justify-center p-10 text-white'>
-        <div className="border-2 border-black w-3/6 bg-slate-600 flex-col p-10">
+    <section className='pt-20'>
+      <div className='flex justify-center py-10 sm:p-10 text-white'>
+        <div className="border-2 border-black xl:w-3/6 md:w-4/6 sm:w-full bg-slate-600 flex-col p-10">
           <div className="w-full flex justify-center">
             <img
               src={picture}
@@ -64,9 +64,9 @@ const Profile = () => {
         </div> */}
       </div>
       <div className='mx-auto border-2 w-5/6'>
-        <div className='flex-row flex-wrap justify-evenly mb-8 px-20'>
+        <div className='flex-row flex-wrap justify-evenly mb-8 px-5 sm:px-20'>
           { carData && carData.map((car, index) => (
-          <article className='w-1/4 inline-block p-2'>
+          <article className='w-4/4 sm:w-4/4 lg:w-2/4 2xl:w-1/4 inline-block p-2'>
             <Link to={"/cars/" + car.slug.current} key={car.slug.current}>
               <article className='mx-auto w-100 p-4 rounded bg-slate-700 flex-col text-white hover:bg-slate-600'>
                 <div className=''>
