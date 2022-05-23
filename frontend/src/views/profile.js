@@ -67,7 +67,7 @@ const Profile = () => {
         <div className='flex-row flex-wrap justify-evenly mb-8 px-20'>
           { carData && carData.map((car, index) => (
           <article className='w-1/4 inline-block p-2'>
-            <Link to={"/car/" + car.slug.current} key={car.slug.current}>
+            <Link to={"/cars/" + car.slug.current} key={car.slug.current}>
               <article className='mx-auto w-100 p-4 rounded bg-slate-700 flex-col text-white hover:bg-slate-600'>
                 <div className=''>
                   <img className='h-80 object-contain' src={car.image.asset.url} alt={ car.slug } />

@@ -9,11 +9,9 @@ export default function Car() {
   const [carCount, setCarCount] = useState(null);
   const [pageNum, setPageNum] = useState(0);
   const [totalPages, setTotalPages] = useState(null);
-  // const [bmwCount, setBmwCount] = useState(null);
   const [filters, setFilters] = useState(null);
   const [currentFilter, setCurrentFilter] = useState("all");
 
-  // let currentPage = 0;
   let carsPerPage = 8;
   let currentStart = pageNum * carsPerPage;
   let currentEnd = currentStart + carsPerPage - 1;
