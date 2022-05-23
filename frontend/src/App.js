@@ -22,6 +22,7 @@ import NavBar from './components/nav-bar';
 import Footer from './components/footer';
 import Loading from './components/loading';
 import SingleCar from './components/car-components/SingleCar';
+import PageNotFound from './components/PageNotFound';
 
 import Home from './views/home';
 import Profile from './views/profile';
@@ -48,9 +49,12 @@ const App = () => {
             <Route exact path='/profile' element={<Profile />} />
           </Route>
           <Route path="/cars" element={<ProtectedRoute />}>
-            <Route path="/cars" element={<Cars />} />
+            <Route path="/cars" element={<Cars />} >
+            </Route>
+              <Route path=":slug" element={<SingleCar />} /> {/* This needs to be changed if in /car-components/Car.js the window.location check is removed from the file and Outlet is no longer being used */}
           </Route>
-          <Route path="/car/:slug" element={<SingleCar />} />
+          <Route path="*" element={<PageNotFound />} />
+
           {/* <Route path="/cars" element={<Cars />} />
           <Route path="/car/:slug" element={<SingleCar />} /> */}
         </Routes>
