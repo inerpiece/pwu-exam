@@ -50,7 +50,7 @@ const App = () => {
           </Route>
           <Route path="/cars" element={<ProtectedRoute />}>
             <Route path="/cars" element={<Cars />} />
-            <Route path=":slug" element={<SingleCar />} /> {/* This needs to be changed if in /car-components/Car.js the window.location check is removed from the file and Outlet is no longer being used. */}
+            <Route path=":slug" element={<SingleCar />} /> {/* This needs to be changed if in /car-components/Car.js the window.location check is removed from the file and Outlet is no longer being used */}
           </Route>
           <Route path="*" element={<PageNotFound />} />
         </Routes>
