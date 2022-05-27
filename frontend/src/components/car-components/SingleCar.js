@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import sanityClient from "../../client";
-import Loading from '../loading';
+import Loading from '../ui/Loading';
 import {useAuth0} from '@auth0/auth0-react';
+import {getCarBySlug} from '../../api/carQuery';
 
 export default function SingleCar() {
   const [singleCarData, setSingleCarData] = useState(null);
@@ -11,6 +12,8 @@ export default function SingleCar() {
 
   const { user } = useAuth0();
   const { email } = user;
+
+  const carBySlugQuery = getCarBySlug(slug);
 
   const rentCar = () => {
     console.log(singleCarData._id)
@@ -42,27 +45,7 @@ export default function SingleCar() {
 
   useEffect(() => {
     sanityClient
-      .fetch(`*[slug.current == "${slug}"]{
-        _id,
-        user,
-        name,
-        "brand": brand[]->name,
-        fuelType,
-        fuelConsumption,
-        transmition,
-        price,
-        seats,
-        "category": category[]->category,
-        image{
-          asset->{
-            _id,
-            url
-          },
-          alt
-        },
-        availability,
-        description
-      }`)
+      .fetch(carBySlugQuery)
       .then((data) => setSingleCarData(data[0]))
       .catch(console.error);
   }, [slug]);

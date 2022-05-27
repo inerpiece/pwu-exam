@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
 import sanityClient from '../client';
 import { useAuth0 } from '@auth0/auth0-react';
+import { getAllByUserEmail } from '../api/carQuery';
 
 const Profile = () => {
   const { user } = useAuth0();
@@ -13,25 +14,12 @@ const Profile = () => {
 
   const [carData, setCarData] = useState(null);
 
+  const allCarsByUserEmailQuery = getAllByUserEmail(email);
+
   const allByUser = () => {
     sanityClient
-      .fetch(`*[user == '${email}']{
-        name,
-        _id,
-        user,
-        slug,
-        "brand": brand[]->name,
-        image{
-          asset->{
-            _id,
-            url
-          },
-          alt
-        },
-        description
-      }`)
+      .fetch(allCarsByUserEmailQuery)
       .then((data) => setCarData(data))
-      // .then(window.location.href = 'http://localhost:3000/profile') // NEEDS TO BE UPDATED FOR THE BUILD
       .catch(console.error)
   }
 
@@ -57,11 +45,6 @@ const Profile = () => {
             <p className="text-xl">Last updated: {formatedDate}</p>
           </div>
         </div>
-        {/* <div className="row">
-          <pre className="col-12 text-light bg-dark p-4">
-            {JSON.stringify(user, null, 2)}
-          </pre>
-        </div> */}
       </div>
       <div className='mx-auto border-2 w-5/6'>
         <div className='flex-row flex-wrap justify-evenly mb-8 px-5 sm:px-20'>
@@ -74,10 +57,10 @@ const Profile = () => {
                 </div>
                 <div>
                   <div className=''>
-                    <h2 className='text-2xl font-bold'>Model: {car.brand} {car.name}</h2>
+                    <h2 className='text-2xl font-bold min-h-20'>Model: {car.brand} {car.name}</h2>
                   </div>
-                  <div className='mt-8 flex flex-wrap justify-between'>
-                    <h3 className='text-xl'><span className='underline'>Description:</span> {car.description.toLowerCase().substring(0,80)}...</h3>
+                  <div className='mt-8 flex flex-wrap justify-between min-h-40'>
+                    <h3 className='text-xl min-h-20'><span className='underline'>Description:</span> {car.description.toLowerCase().substring(0,80)}...</h3>
                   </div>
                   <div className='mt-8 mb-4'>
                     <span className='border p-4 rounded hover:bg-white hover:text-black underlined'>Stop Renting &#10132;</span>

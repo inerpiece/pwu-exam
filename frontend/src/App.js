@@ -16,13 +16,13 @@
 
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react';
 
-import NavBar from './components/nav-bar';
-import Footer from './components/footer';
-import Loading from './components/loading';
+import NavBar from './components/navigation-components/NavBar';
+import Footer from './components/ui/Footer';
+import Loading from './components/ui/Loading';
 import SingleCar from './components/car-components/SingleCar';
-import PageNotFound from './components/PageNotFound';
+import PageNotFound from './components/ui/PageNotFound';
 
 import Home from './views/home';
 import Profile from './views/profile';
@@ -49,14 +49,10 @@ const App = () => {
             <Route exact path='/profile' element={<Profile />} />
           </Route>
           <Route path="/cars" element={<ProtectedRoute />}>
-            <Route path="/cars" element={<Cars />} >
-            </Route>
-              <Route path=":slug" element={<SingleCar />} /> {/* This needs to be changed if in /car-components/Car.js the window.location check is removed from the file and Outlet is no longer being used */}
+            <Route path="/cars" element={<Cars />} />
+            <Route path=":slug" element={<SingleCar />} /> {/* This needs to be changed if in /car-components/Car.js the window.location check is removed from the file and Outlet is no longer being used */}
           </Route>
           <Route path="*" element={<PageNotFound />} />
-
-          {/* <Route path="/cars" element={<Cars />} />
-          <Route path="/car/:slug" element={<SingleCar />} /> */}
         </Routes>
       </div>
       <Footer />

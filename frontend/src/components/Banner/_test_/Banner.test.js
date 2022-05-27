@@ -6,7 +6,7 @@ describe("Banner", () => {
   it('should render without crashing', () => {
     const div = document.createElement("div");
     render(
-        <Banner />, div
+      <Banner />, div
     );
   });
 })

@@ -1,6 +1,6 @@
 import {NavLink} from "react-router-dom";
 import React, { useState } from "react";
-import AuthNav from './auth-nav';
+import AuthNav from './AuthNav';
 import {useAuth0} from '@auth0/auth0-react';
 
 const MainNav = () => {

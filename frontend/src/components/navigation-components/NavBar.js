@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import MainNav from './main-nav';
+import MainNav from './MainNav';
 // import AuthNav from './auth-nav';
 // import LoginButton from './login-button'
 // import LogoutButton from './logout-button'

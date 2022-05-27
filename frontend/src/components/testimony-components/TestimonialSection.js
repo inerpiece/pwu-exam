@@ -1,24 +1,16 @@
 import React, { Fragment, useEffect, useState } from "react";
-import Testimonial from '../components/Testimonial';
-import sanityClient from '../client';
+import Testimonial from './Testimonial';
+import sanityClient from '../../client';
+import {getAllTestimony} from '../../api/testimonyQuery';
 
 function TestimonialSection() {
   const [testimonials, setTestimonials] = useState(null);
 
+  const allTestimonyQuery = getAllTestimony();
+
   useEffect(() => {
     sanityClient
-      .fetch(`*[_type == "testimonial"]{
-        name,
-        body,
-        image{
-          asset->{
-            _id,
-            url
-          },
-          alt
-        },
-        rating
-      }`)
+      .fetch(allTestimonyQuery)
       .then((data) => setTestimonials(data))
       .catch(console.error)
   }, [])

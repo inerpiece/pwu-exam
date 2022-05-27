@@ -1,8 +1,9 @@
 import sanityClient from '@sanity/client';
-// const token = process.env.SANITY_TOKEN;
+const token = process.env.REACT_APP_SANITY_TOKEN;
+const projectId = process.env.REACT_APP_PROJECT_ID;
 
 export default sanityClient({
-  projectId: "qrdgvxmf",
+  projectId: projectId,
   dataset: "production",
-  token: "skJInvzVnyUOsYuhoFVULAah5pPMTh5yCTdAWaoQhaQrn9KxFHHlBIs6bJfMysjT4Z6fKp6fmmlp2VjpxmcV2Qcb2fkWac0YBN4LlIkVi7G9Cjo3y6Inqhss4jlb6FpqKdIvKVJ9uvy4V0xZdhHXJfKHq8oLNi3oXjm83lq7loq7MFKNQiB0"
+  token: token
 })

@@ -1,8 +1,8 @@
-import React, { Fragment, useEffect, useState } from "react";
-import Banner from '../components/Banner';
-import TestimonialSection from '../components/TestimonialSection';
-import Login from '../components/login-button';
-import SignUp from '../components/signup-button';
+import React, { Fragment } from "react";
+import Banner from '../components/ui/Banner';
+import TestimonialSection from '../components/testimony-components/TestimonialSection';
+import Login from '../components/buttons/LoginButton';
+import SignUp from '../components/buttons/SignupButton';
 
 function Home() {
 

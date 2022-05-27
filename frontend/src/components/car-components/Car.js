@@ -1,8 +1,9 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import sanityClient from '../../client';
-import Banner from '../Banner';
+import Banner from '../ui/Banner';
 import { Outlet } from 'react-router-dom';
+import { getAllCars, getAllCarsByFilter, getAllCarsWithoutPagination, getAllCarsByFilterWOPagination, getAllBrandNames } from '../../api/carQuery';
 
 export default function Car() {
   const [carData, setCarData] = useState(null);
@@ -12,9 +13,17 @@ export default function Car() {
   const [filters, setFilters] = useState(null);
   const [currentFilter, setCurrentFilter] = useState("all");
 
-  let carsPerPage = 8;
-  let currentStart = pageNum * carsPerPage;
-  let currentEnd = currentStart + carsPerPage - 1;
+  let carsPerPage = 8; //number of cars per page
+  let currentStart = pageNum * carsPerPage; // used for the query whenever pagination is used
+  let currentEnd = currentStart + carsPerPage - 1; // used for the query whenever pagination is used
+  
+  // QUERIES -------------------------------------------------------------------------------
+  const allCarsQuery = getAllCars(currentStart, currentEnd)
+  const allCarsByFilterQuery = getAllCarsByFilter(currentFilter, currentStart, currentEnd);
+  const allCarsWOPaginationQuery = getAllCarsWithoutPagination();
+  const allCarsByFilterWOPaginationQuery = getAllCarsByFilterWOPagination(currentFilter);
+  const allBrandNamesQuery = getAllBrandNames();
+  // ---------------------------------------------------------------------------------------
 
   // changes the pageNum state to state + 1
   const nextPage = () => {
@@ -49,39 +58,13 @@ export default function Car() {
   const filterAll = () => {
     if (currentFilter == "all") {
       sanityClient
-        .fetch(`*[_type == "car"][${currentStart}..${currentEnd}]{
-          name,
-          slug,
-          "brand": brand[]->name,
-          image{
-            asset->{
-              _id,
-              url
-            },
-            alt
-          },
-          description,
-          availability
-        }`)
+        .fetch(allCarsQuery)
         .then((data) => setCarData(data))
         .then(() => CallCarCountFunction())
         .catch(console.error)
     } else {
       sanityClient
-        .fetch(`*["${currentFilter}" in brand[]->name][${currentStart}..${currentEnd}]{
-          name,
-          slug,
-          "brand": brand[]->name,
-          image{
-            asset->{
-              _id,
-              url
-            },
-            alt
-          },
-          description,
-          availability
-        }`)
+        .fetch(allCarsByFilterQuery)
         .then((data) => setCarData(data))
         .then(() => CallCarCountFunction())
         .catch(console.error)
@@ -103,12 +86,12 @@ export default function Car() {
   const CallCarCountFunction = () => {
     if (currentFilter == "all") {
       sanityClient
-      .fetch(`*[_type == "car"]`)
+      .fetch(allCarsWOPaginationQuery)
       .then((data) => changeCarCount(data))
       .catch(console.error)
     } else {
       sanityClient
-      .fetch(`*["${currentFilter}" in brand[]->name]`)
+      .fetch(allCarsByFilterWOPaginationQuery)
       .then((data) => changeCarCount(data))
       .catch(console.error)
     }
@@ -120,7 +103,7 @@ export default function Car() {
   //sets the filters based on the car brands from the cms db
   useEffect(() => {
     sanityClient
-      .fetch(`*[_type == "brand"]{name}`)
+      .fetch(allBrandNamesQuery)
       .then((data) => setFilters(data))
       .catch(console.error)
   }, [])
@@ -128,7 +111,7 @@ export default function Car() {
   //initial setup of the carCount
   useEffect(() => {
     sanityClient
-      .fetch(`*[_type == "car"]`)
+      .fetch(allCarsWOPaginationQuery)
       .then((data) => setCarCount(data))
       .catch(console.error)
   }, [])
