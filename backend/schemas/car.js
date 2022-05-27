@@ -73,5 +73,21 @@ export default {
       of: [{type: 'reference', to: {type: 'carCategories'}}],
       validation: Rule => Rule.max(1),
     },
+    {
+      name: 'availability',
+      title: 'Car Availability',
+      type: 'boolean',
+    },
+    {
+      name: 'description',
+      title: 'Car Description',
+      type: 'text',
+      validation: Rule => Rule.required()
+    },
+    {
+      name: 'user',
+      title: 'In Use By:',
+      type: 'string'
+    },
   ]
 }
