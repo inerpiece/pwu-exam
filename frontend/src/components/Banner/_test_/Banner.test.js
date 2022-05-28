@@ -1,5 +1,5 @@
-import { render, screen } from '@testing-library/react';
-import Banner from '../../Banner';
+import { render } from '@testing-library/react';
+import Banner from '../../ui/Banner';
 import '@testing-library/jest-dom';
 
 describe("Banner", () => {
